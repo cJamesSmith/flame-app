@@ -10,7 +10,9 @@ import time
 app.add_static_files('/images', './images')
 
 with ui.header(bordered=True, elevated=True).style('background-color: #3874c8') as header:
-    ui.label('MIND LAB APP --- MODEL MERGE').classes("font-bold text-2xl text-white")
+    with ui.row(align_items='center').classes('content-center'):
+        ui.image('images/mindlab.png').props('width=120px height=80px').classes("bg-white")
+        ui.label('MIND LAB APP --- MODEL MERGE').classes("font-bold text-2xl text-white")
 
 def handle_drop(todo: TodoItem, location: str):
     ui.notify(f'"{todo.name}" is now in {location}')

@@ -9,7 +9,9 @@ examples/
 chatbot/
 tutorial/
 local_file_picker/
-images/
+./main.py
 
 # Virtual environments
 .venv
+myapp/merge/utils/draganddrop.py
+myapp/merge/utils/todo.py
