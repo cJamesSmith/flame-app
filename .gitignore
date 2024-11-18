@@ -1,0 +1,15 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+examples/
+chatbot/
+tutorial/
+local_file_picker/
+images/
+
+# Virtual environments
+.venv
