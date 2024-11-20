@@ -20,7 +20,7 @@ def handle_drop(todo: TodoItem, location: str):
 todos = ToDoList('Model Adjusting', on_change=todo_ui.refresh)
 
 def add_model_pool(todos: ToDoList):
-    card = ui.card().classes('w-50 items-stretch')
+    card = ui.card().classes('w-[600px] items-stretch')
     with card:
         ui.label().bind_text_from(todos, 'title').classes('text-bold ml-1 text-2xl')
         todo_ui(todos)
@@ -66,12 +66,12 @@ async def compute():
     await asyncio.sleep(1)
     n.dismiss()
 
-with ui.column():
-    with ui.row().classes('content-center'):
+with ui.column().classes('w-full mx-auto items-stretch'):
+    with ui.row().classes('w-full mx-auto content-center items-stretch'):
         add_model_pool(todos)
         # add_drag(model_pool, model_merge)
 
-    with ui.card().classes('w-50 items-stretch'):
+    with ui.card().classes('w-full mx-auto items-stretch'):
         with ui.column():
             ui.label('Merge Options').classes('text-bold text-2xl')
             with ui.row():
