@@ -6,6 +6,11 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "fastapi>=0.115.5",
+    "gradio>=5.6.0",
+    "langchain-huggingface>=0.1.2",
+    "langchain-openai>=0.2.9",
+    "langchain[torch]>=0.3.7",
     "nicegui>=2.5.0",
     "pywebview>=5.3.2",
+    "transformers[torch]>=4.46.3",
 ]
