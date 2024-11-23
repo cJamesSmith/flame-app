@@ -20,7 +20,7 @@ class column(ui.column):
 
     def __init__(self, name: str, on_drop: Optional[Callable[[Item, str], None]] = None) -> None:
         super().__init__()
-        with self.classes('bg-blue-grey-2 w-80 p-4 rounded shadow-2'):
+        with self.classes('bg-blue-grey-2 w-[400px] p-4 rounded shadow-2'):
             ui.label(name).classes('text-bold ml-1 text-2xl')
         self.name = name
         self.on('dragover.prevent', self.highlight)
