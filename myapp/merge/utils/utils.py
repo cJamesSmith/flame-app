@@ -20,7 +20,7 @@ class column(ui.column):
 
     def __init__(self, name: str, on_drop: Optional[Callable[[Item, str], None]] = None) -> None:
         super().__init__()
-        with self.classes('bg-blue-grey-2 w-[400px] p-4 rounded shadow-2'):
+        with self.classes('bg-blue-grey-2 w-[500px] p-4 rounded shadow-2'):
             ui.label(name).classes('text-bold ml-1 text-2xl')
         self.name = name
         self.on('dragover.prevent', self.highlight)
@@ -50,7 +50,10 @@ class card(ui.card):
         super().__init__()
         self.item = item
         with self.props('draggable').classes('w-full cursor-pointer bg-grey-1'):
-            ui.label(item.name)
+            with ui.row().classes('items-center text-xl flex-grow'):
+                ui.label(item.name)
+                ui.slider(value=0.5, min=0, max=1, step=0.1).classes("w-60").bind_value(item, 'weight')
+                ui.number(value=item.weight).classes('w-11 text-xl remove-arrow').bind_value(item, 'weight').set_enabled(False)
         self.on('dragstart', self.handle_dragstart)
 
     def handle_dragstart(self) -> None:
@@ -74,8 +77,8 @@ class ToDoList:
         todo_item = TodoItem(name, chosen)
         with model_pool:
             todo_item.card = card(todo_item)
-        self.items.append(todo_item)
-        self.on_change()
+        # self.items.append(todo_item)
+        # self.on_change()
 
     def remove(self, item: TodoItem) -> None:
         item.card.delete()
@@ -85,7 +88,7 @@ class ToDoList:
 @ui.refreshable
 def todo_ui(todos: ToDoList):
     if not todos.items:
-        ui.label('There is no model.').classes('mx-auto')
+        # ui.label('There is no model.').classes('mx-auto')
         return
     ui.linear_progress(sum(item.chosen for item in todos.items) / len(todos.items), show_value=False)
     with ui.row().classes('justify-center w-full'):
