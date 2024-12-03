@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import asyncio
-from nicegui import ui, app
+from nicegui import ui, app, native
 from utils.utils import ToDoList, todo_ui, TodoItem
 import utils.utils as dnd
 from dataclasses import dataclass
@@ -36,7 +36,7 @@ def compute_():
 
 ui.add_body_html('<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>')
 src = 'https://assets1.lottiefiles.com/datafiles/HN7OcWNnoqje6iXIiZdWzKxvLIbfeCGTmvXmEm1h/data.json'
-src = 'images/kobe.gif'
+src = 'images/jiazai.gif'
 async def compute():
     with ui.dialog() as dialog, ui.card():
         with ui.column(align_items='center'):
@@ -62,12 +62,12 @@ with ui.row().classes('w-full mx-auto items-stretch'):
         add_model_pool(todos)
         model_pool = dnd.column('Model Pool', on_drop=handle_drop)
         model_merge = dnd.column('Models to be merged', on_drop=handle_drop)
-        todos.add('Llama', model_pool)
-        todos.add('QWen', model_pool)
-        todos.add('Llama', model_pool)
-        todos.add('QWen', model_pool)
-        todos.add('Llama', model_merge)
-        todos.add('QWen', model_merge)
+        todos.add('Llama-3-8B-French', model_pool)
+        todos.add('Llama-3-8B-Chinese', model_pool)
+        todos.add('Llama-3-8B-Arabic', model_pool)
+        todos.add('Llama-3-8B-Turkish', model_pool)
+        todos.add('Llama-3-8B-Spanish', model_merge)
+        todos.add('Llama-3-8B-English', model_merge)
         # add_drag(model_pool, model_merge)
     # with ui.row(align_items='center').classes('w-full mx-auto content-center items-stretch'):
     with ui.column().classes('mx-auto content-center items-stretch'):
@@ -86,7 +86,7 @@ with ui.row().classes('w-full mx-auto items-stretch'):
                             ui.space()
                             with ui.row(align_items='center'):
                                 ui.label("Select the EA algorithm:").classes('text-lg flex-grow')
-                                ui.select({1: 'One', 2: 'Two', 3: 'Three'}, value=1).classes('text-lg flex-grow')
+                                ui.select({1: 'NSGAII', 2: 'MOEAD', 3: 'MOPSO', 4: 'SPEA2', 5: 'IBEA'}, value=1).classes('text-lg flex-grow')
                         ui.space()
                         with ui.column():
                             with ui.row(align_items='center'):
@@ -104,4 +104,4 @@ with ui.row().classes('w-full mx-auto items-stretch'):
                     ui.button('Go Translation', icon='translate').classes('w-[500px] h-[80px] text-xl flex-grow')
                     ui.button('Go Summary', icon='grading').classes('w-[500px] h-[80px] text-xl flex-grow')
 
-ui.run(native=False, )
+ui.run(native=False, port=native.find_open_port())
